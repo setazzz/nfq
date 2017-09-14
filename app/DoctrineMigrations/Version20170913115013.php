@@ -84,6 +84,7 @@ class Version20170913115013 extends AbstractMigration implements ContainerAwareI
             $fixation = $fixations[0];
             $location = $locations[0];
             $purpose = $purposes[0];
+            $seen = (rand(0, 1) == 1) ? true : false;
 
             $newOrder = new Orders();
 
@@ -96,6 +97,7 @@ class Version20170913115013 extends AbstractMigration implements ContainerAwareI
             $newOrder->setFixation($fixation);
             $newOrder->setLocation($location);
             $newOrder->setPurpose($purpose);
+            $newOrder->setSeen($seen);
 
             $em->persist($newOrder);
         }

@@ -84,6 +84,13 @@ class Orders
      */
     private $purpose;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="seen", type="boolean")
+     */
+    private $seen;
+
 
     /**
      * Get id
@@ -309,6 +316,29 @@ class Orders
     public function getPurpose()
     {
         return $this->purpose;
+    }
+
+    /**
+     * Set seen
+     *
+     * @param boolean $seen
+     *
+     * @return Orders
+     */
+    public function setSeen($seen)
+    {
+        $this->seen = $seen;
+
+        return $this;
+    }
+    /**
+     * Get seen
+     *
+     * @return bool
+     */
+    public function getSeen()
+    {
+        return $this->seen;
     }
 }
 
