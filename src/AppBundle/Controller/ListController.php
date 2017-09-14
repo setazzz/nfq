@@ -9,14 +9,18 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\AppBundle;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @Route("/orders", name="ordersIndex")
+ */
 class ListController extends Controller
 {
     /**
-     * @Route("/ordersList", name="ordersList")
+     * @Route("/list", name="ordersList")
      */
     public function FormAction(Request $request)
     {
@@ -26,6 +30,26 @@ class ListController extends Controller
 
         return $this->render('contents/list.html.twig', [
             'orders' => $orders,
+        ]);
+    }
+
+    /**
+     * @Route("/details/{id}", name="details")
+     */
+    public function categoryAction(Request $request, $id)
+    {
+        $order = $this->getDoctrine()->getRepository('AppBundle:Orders')->find($id);
+
+        if ($order->getSeen() == false) {
+            $em = $this->getDoctrine()->getManager();
+
+            $order->setSeen(true);
+            $em->persist($order);
+            $em->flush();
+        }
+
+        return $this->render('contents/details.html.twig', [
+            'order' =>$order,
         ]);
     }
 }

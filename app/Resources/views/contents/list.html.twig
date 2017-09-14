@@ -15,13 +15,13 @@
 
             <tbody>
                 {% for order in orders %}
-                    <tr
+                   <tr
                         {% if order.seen == false %}
                              style="background-color: red;"
                         {% endif %}
                     >
                         <td>{{ order.id }}</td>
-                        <td>{{ order.clientName }}</td>
+                        <td> <a href="{{ path('details', {'id': order.id}) }}">{{ order.clientName }}</a></td>
                         <td>{{ order.clientCity }}</td>
                         <td>{{ (order.width * order.height)|round(1, 'common') }}</td>
                     </tr>

@@ -38,6 +38,7 @@ class OrdersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $newOrder = new Orders();
+        $newOrder->setSeen(false);
         $form = $this->createForm(OrdersType::class, $newOrder);
         $form->handleRequest($request);
         if ($form->isValid()) {
